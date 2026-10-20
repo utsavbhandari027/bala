@@ -1,0 +1,10 @@
+---
+import { initials, shortName, url } from '../lib/data';
+interface Props { person: any; size?: number }
+const { person, size = 96 } = Astro.props;
+---
+<div class="avatar" style={`--size:${size}px`}>
+  {person?.photo
+    ? <img src={url(person.photo)} alt={`Portrait of ${shortName(person.name).replace(/^Dr\.\s*/, '')}`} loading="lazy" width="600" height="600" />
+    : <span aria-hidden="true">{initials(person?.name)}</span>}
+</div>

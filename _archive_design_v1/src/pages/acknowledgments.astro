@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { sponsors, url } from '../lib/data';
+
+const endowment = sponsors.find((g) => g.group === 'Endowment');
+const donors = sponsors.find((g) => g.donors);
+const logoGroups = sponsors.filter((g) => g !== endowment && g !== donors);
+const isTodo = (s: string) => /^TODO/.test(s);
+---
+<Base title="Acknowledgments" description="Sponsors, funders, partners, and donors who support the Bala Lab's research at Mississippi State University.">
+  <PageHero eyebrow="Acknowledgments" title="With gratitude to those who <em>make this work possible</em>"
+    lede="The lab's research, students, and outreach are supported by public agencies, commodity organizations, industry partners, and generous donors. Thank you." />
+
+  {endowment && (
+    <section class="section" style="padding-bottom:0">
+      <div class="container">
+        {endowment.items.map((e: any) => (
+          <div class="endow on-dark">
+            <span class="endow__icon"><Icon name="award" size={32} /></span>
+            <div>
+              <div class="eyebrow">{endowment.group}</div>
+              <h2>{e.name}</h2>
+              <p>{e.note}. {endowment.intro} <span class="todo">TODO: add a sentence about Dr. Triplett and the endowment</span></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {logoGroups.map((g, gi) => (
+    <section class="section" style={gi < logoGroups.length - 1 ? 'padding-bottom:0' : ''}>
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Support · 0{gi + 1}</div><h2>{g.group}</h2></div><p>{g.intro}</p></div>
+        <ul class="logos">
+          {g.items.map((s: any) => {
+            const Tag = s.url ? 'a' : 'div';
+            return (
+              <li>
+                <Tag class:list={['logo', isTodo(s.name) && 'logo--todo']} href={s.url || undefined}>
+                  {s.logo
+                    ? <img src={url(s.logo)} alt={s.name} loading="lazy" />
+                    : <span class="logo__name">{isTodo(s.name) ? <><span class="todo">TODO</span><span class="logo__ph">{s.name.replace(/^TODO —\s*/, '')}</span></> : s.name}</span>}
+                  {s.note && !isTodo(s.name) && <span class="logo__note">{s.note}</span>}
+                  {s.note && isTodo(s.name) && <span class="logo__note">{s.note}</span>}
+                </Tag>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  {donors && (
+    <section class="section bg-grey">
+      <div class="container donors">
+        <div>
+          <div class="eyebrow">{donors.group}</div>
+          <h2>Our <em>donors</em></h2>
+          <p class="muted">{donors.intro}</p>
+        </div>
+        <ul class="donor-list">
+          {donors.items.map((d: any) => <li>{isTodo(d.name) ? <><span class="todo">TODO</span> Donor name</> : d.name}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <div class="cta on-dark">
+        <div>
+          <div class="eyebrow">Support our research</div>
+          <h2>Invest in the next generation of <em>weed scientists.</em></h2>
+          <p>Gifts support graduate assistantships, student travel, and field research. Contact Dr. Avila or give through the Mississippi State University Foundation.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--white" href="https://www.msufoundation.com">Give to MSU <Icon name="heart" size={18} /></a>
+          <a class="btn btn--ghost-light" href="mailto:lad425@msstate.edu">Contact the lab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .endow { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; padding: clamp(32px, 5vw, 64px); border-radius: var(--radius-lg);
+    background: var(--maroon-900); color: var(--white); position: relative; overflow: hidden; }
+  .endow::after { content: ""; position: absolute; right: -140px; top: -200px; width: 480px; height: 480px; border-radius: 50%; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 0 0 60px rgba(255,255,255,.006), 0 0 0 61px rgba(255,255,255,.06); }
+  .endow > * { position: relative; z-index: 1; }
+  .endow__icon { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; background: var(--white); color: var(--maroon); }
+  .endow h2 { margin: 0 0 12px; }
+  .endow p { margin: 0; color: rgba(255,255,255,.78); max-width: 64ch; }
+  .logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .logo { height: 100%; min-height: 148px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; text-align: center; padding: 24px;
+    border: 1px solid var(--grey-200); border-radius: var(--radius); background: var(--white); color: var(--ink); text-decoration: none; transition: all .25s var(--ease); }
+  a.logo:hover { border-color: var(--maroon); box-shadow: var(--shadow); transform: translateY(-2px); color: var(--maroon); }
+  .logo img { max-height: 64px; width: auto; filter: grayscale(1); opacity: .8; transition: filter .25s, opacity .25s; }
+  a.logo:hover img { filter: none; opacity: 1; }
+  .logo__name { font-weight: 600; line-height: 1.35; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .logo__note { font-size: .8125rem; color: var(--grey-500); }
+  .logo--todo { background: var(--grey-50); border-style: dashed; border-color: var(--grey-300); }
+  .logo__ph { color: var(--grey-500); font-weight: 500; }
+  .donors { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .donor-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 48px; }
+  .donor-list li { break-inside: avoid; padding: 16px 0; border-bottom: 1px solid var(--grey-200); font: 400 1.375rem/1.3 var(--font-display); }
+  @media (max-width: 1000px) { .logos { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 760px) { .donors { grid-template-columns: 1fr; } .donor-list { columns: 1; } .endow { grid-template-columns: 1fr; } }
+</style>

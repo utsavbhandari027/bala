@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { news, url, fmtDate } from '../../lib/data';
+export function getStaticPaths() { return news.map((n) => ({ params: { slug: n.slug }, props: { n } })); }
+const { n } = Astro.props as { n: any };
+const { Content } = n;
+---
+<Base title={n.title} description={n.summary}>
+  <section class="page-hero on-dark">
+    <div class="container narrow">
+      <a class="crumbs" href={url('/news/')} style="text-decoration:none"><Icon name="arrow-left" size={16} /> All news</a>
+      <div class="meta"><time>{fmtDate(n.date, true)}</time><span class="tag">{n.category.replace('-', ' ')}</span></div>
+      <h1 set:html={n.title} />
+    </div>
+  </section>
+  <article class="section" style="padding-top:56px">
+    <div class="container narrow prose body"><Content /></div>
+  </article>
+</Base>
+<style>
+  .narrow { max-width: 860px; }
+  .page-hero h1 { max-width: 22ch; font-size: clamp(2.25rem, 4.5vw, 3.5rem); }
+  .meta { display: flex; gap: 12px; align-items: center; color: var(--maroon-200); font-size: .875rem; margin-bottom: 20px; }
+  .body { font-size: 1.125rem; }
+</style>

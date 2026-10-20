@@ -1,0 +1,36 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Avatar from '../../../components/Avatar.astro';
+import { projects, personBySlug, url, shortName } from '../../../lib/data';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: any };
+const { Content } = p;
+const team = (p.people ?? []).map(personBySlug).filter(Boolean);
+---
+<Base title={p.title} description={p.summary}>
+  <PageHero eyebrow={`Project · ${p.status}`} title={p.title} lede={p.summary} back={{ label: 'Research', href: url('/research/#projects') }} />
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="meta">{p.start}{p.end ? `–${p.end}` : '–present'}{p.funding && ` · ${p.funding}`}</p>
+      <div class="prose"><Content /></div>
+      {team.length > 0 && (
+        <div class="team">
+          <div class="eyebrow">People</div>
+          <div class="grid grid-3">
+            {team.map((m: any) => (
+              <a class="card person" href={url(`/people/${m.slug}/`)}><Avatar person={m} size={72} /><h3>{shortName(m.name)}</h3><p>{m.role.split(' — ')[0]}</p></a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+<style>
+  .meta { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+  .team { margin-top: 64px; }
+</style>

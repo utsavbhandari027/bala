@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PubItem from '../components/PubItem.astro';
+import Icon from '../components/Icon.astro';
+import { publications, teams } from '../lib/data';
+
+const years = [...new Set(publications.map((p) => p.year))];
+const types = [['journal', 'Journal article'], ['review', 'Review'], ['chapter', 'Book chapter'], ['extension', 'Extension'], ['thesis', 'Thesis']];
+---
+<Base title="Publications" description="Peer-reviewed articles, reviews, and extension publications from the Bala Lab at Mississippi State University.">
+  <PageHero eyebrow="Publications" title="Research <em>output</em>"
+    lede={`${publications.length} publications listed so far <span class="todo">TODO: import 2000–2023</span>. Lab members' names are highlighted.`} />
+
+  <section class="section" style="padding-top:56px">
+    <div class="container pubs">
+      <aside class="filters" id="pub-filters" hidden>
+        <div class="filters__inner">
+          <label class="f-label" for="pub-q">Search</label>
+          <div class="search-box"><Icon name="search" size={18} /><input type="search" id="pub-q" placeholder="Title, author, journal…" /></div>
+
+          <label class="f-label" for="pub-year">Year</label>
+          <select id="pub-year"><option value="">All years</option>{years.map((y) => <option value={y}>{y}</option>)}</select>
+
+          <span class="f-label">Type</span>
+          <div class="checks" data-key="type">
+            {types.map(([v, l]) => <label class="check"><input type="radio" name="type" value={v} /> <span>{l}</span></label>)}
+            <label class="check"><input type="radio" name="type" value="" checked /> <span>All types</span></label>
+          </div>
+
+          <span class="f-label">Team</span>
+          <div class="checks" data-key="team">
+            {teams.map((t) => <label class="check"><input type="radio" name="team" value={t.id} /> <span>{t.name}</span></label>)}
+            <label class="check"><input type="radio" name="team" value="" checked /> <span>All teams</span></label>
+          </div>
+
+          <span class="f-label">Show</span>
+          <label class="switch"><input type="checkbox" id="pub-featured" /> <span>Featured only</span></label>
+          <label class="switch"><input type="checkbox" id="pub-members" /> <span>With current lab members</span></label>
+
+          <button class="btn btn--ghost btn--sm" type="button" id="pub-reset" style="margin-top:24px">Reset filters</button>
+        </div>
+      </aside>
+
+      <div>
+        <p class="count" id="pub-count" aria-live="polite"></p>
+        <ul class="pub-list" id="pub-list">{publications.map((p) => <PubItem pub={p} />)}</ul>
+        <p class="empty" id="pub-empty" hidden>No publications match these filters.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .pubs { display: grid; grid-template-columns: 280px 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .filters { position: sticky; top: 100px; }
+  .filters__inner { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--grey-200); border-radius: var(--radius); background: var(--grey-50); }
+  .f-label { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-500); margin: 22px 0 10px; }
+  .f-label:first-child { margin-top: 0; }
+  .filters select { width: 100%; }
+  .search-box { position: relative; }
+  .search-box :global(svg) { position: absolute; left: 14px; top: 15px; color: var(--grey); }
+  .search-box input { width: 100%; padding-left: 40px; }
+  .checks { display: grid; gap: 2px; }
+  .check, .switch { display: flex; align-items: center; gap: 10px; font-size: .9375rem; cursor: pointer; padding: 6px 0; color: var(--ink-2); }
+  .check input, .switch input { accent-color: var(--maroon); width: 16px; height: 16px; margin: 0; }
+  .count { font-size: .875rem; color: var(--grey-500); margin: 0 0 8px; }
+  .empty { padding: 48px 0; color: var(--grey-500); }
+  @media (max-width: 960px) { .pubs { grid-template-columns: 1fr; } .filters { position: static; } }
+</style>
+
+<script>
+  const form = document.getElementById('pub-filters')!;
+  form.hidden = false;
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#pub-list .pub'));
+  const q = document.getElementById('pub-q') as HTMLInputElement;
+  const year = document.getElementById('pub-year') as HTMLSelectElement;
+  const featured = document.getElementById('pub-featured') as HTMLInputElement;
+  const members = document.getElementById('pub-members') as HTMLInputElement;
+  const radio = (name: string) => (form.querySelector(`input[name="${name}"]:checked`) as HTMLInputElement)?.value ?? '';
+
+  const apply = () => {
+    const s = q.value.trim().toLowerCase(), type = radio('type'), team = radio('team');
+    let shown = 0;
+    for (const li of items) {
+      const ok = (!s || li.textContent!.toLowerCase().includes(s)) &&
+        (!year.value || li.dataset.year === year.value) &&
+        (!type || li.dataset.type === type) &&
+        (!team || li.dataset.teams!.split(' ').includes(team)) &&
+        (!featured.checked || li.dataset.featured === 'true') &&
+        (!members.checked || li.dataset.members === 'true');
+      li.hidden = !ok; if (ok) shown++;
+    }
+    document.getElementById('pub-count')!.textContent = `Showing ${shown} of ${items.length} publications`;
+    document.getElementById('pub-empty')!.hidden = shown > 0;
+    const p = new URLSearchParams();
+    if (s) p.set('q', s); if (year.value) p.set('year', year.value); if (type) p.set('type', type); if (team) p.set('team', team);
+    if (featured.checked) p.set('featured', '1'); if (members.checked) p.set('members', '1');
+    history.replaceState(null, '', p.toString() ? '#' + p.toString() : location.pathname);
+  };
+  // Restore state from the URL hash so filtered views can be shared.
+  const init = new URLSearchParams(location.hash.slice(1));
+  q.value = init.get('q') ?? ''; year.value = init.get('year') ?? '';
+  for (const k of ['type', 'team']) { const v = init.get(k); if (v) (form.querySelector(`input[name="${k}"][value="${v}"]`) as HTMLInputElement | null)?.click(); }
+  featured.checked = init.get('featured') === '1'; members.checked = init.get('members') === '1';
+  form.addEventListener('input', apply);
+  form.addEventListener('change', apply);
+  document.getElementById('pub-reset')!.addEventListener('click', () => {
+    q.value = ''; year.value = ''; featured.checked = false; members.checked = false;
+    form.querySelectorAll<HTMLInputElement>('input[type=radio][value=""]').forEach((r) => (r.checked = true));
+    apply();
+  });
+  apply();
+</script>

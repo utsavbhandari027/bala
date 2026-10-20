@@ -1,0 +1,140 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import Avatar from '../../components/Avatar.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { currentPeople, alumni, teams, url } from '../../lib/data';
+
+const pi = currentPeople.find((p) => p.category === 'pi');
+const associates = currentPeople.filter((p) => p.category === 'associate');
+const interns = currentPeople.filter((p) => p.category === 'intern');
+const { Content: PiBio } = pi;
+---
+<Base title="People" description="Faculty, research associates, graduate students, interns, and alumni of the Bala Lab at Mississippi State University.">
+  <PageHero eyebrow="People" title="The people behind <em>the research</em>"
+    lede="Faculty, research associates, graduate students, and interns working across three research teams." />
+
+  <div class="filter-wrap">
+    <div class="container">
+      <div class="segmented" role="toolbar" aria-label="Filter people" id="people-filter" hidden>
+        <button type="button" data-filter="all" aria-pressed="true">Everyone</button>
+        {teams.map((t) => <button type="button" data-filter={t.id} aria-pressed="false">{t.short}</button>)}
+        <button type="button" data-filter="interns" aria-pressed="false">Interns</button>
+        <button type="button" data-filter="alumni" aria-pressed="false">Alumni</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container people-page">
+    <!-- PI -->
+    <section data-group="all" class="block">
+      <div class="block__label"><div class="eyebrow">Principal Investigator</div></div>
+      <div class="pi">
+        <a href={url(`/people/${pi.slug}/`)} class="pi__photo" aria-label={`Profile of ${pi.name}`}><Avatar person={pi} size="xl" ring /></a>
+        <div class="pi__body">
+          <h2>{pi.name}</h2>
+          <p class="pi__role">{pi.role}</p>
+          <div class="pi__bio"><PiBio /></div>
+          <div class="tags" style="margin:20px 0 28px">{pi.research_interests.slice(0, 6).map((r: string) => <span class="tag tag--grey">{r}</span>)}</div>
+          <div class="btn-row">
+            <a class="btn" href={url(`/people/${pi.slug}/`)}>Full profile <Icon name="arrow" /></a>
+            <a class="btn btn--ghost" href={`mailto:${pi.email}`}><Icon name="mail" size={18} /> {pi.email}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Associates -->
+    <section data-group="all" class="block">
+      <div class="block__label"><div class="eyebrow">Research Associates</div></div>
+      <div class="people-grid">{associates.map((p) => <PersonCard person={p} />)}</div>
+    </section>
+
+    <!-- Teams -->
+    {teams.map((t, i) => {
+      const members = currentPeople.filter((p) => p.team === t.id).sort((a, b) => Number(!!b.is_lead) - Number(!!a.is_lead) || a.order - b.order);
+      return (
+        <section class="block team-block" id={t.id} data-group={t.id}>
+          <div class="team-block__head">
+            <span class="team-block__num">Team 0{i + 1}</span>
+            <h2>{t.name}</h2>
+            <p>{t.summary}{!t.lead && <strong> Team lead to be announced.</strong>}</p>
+          </div>
+          <div class="people-grid">{members.map((p) => <PersonCard person={p} />)}</div>
+        </section>
+      );
+    })}
+
+    <!-- Interns -->
+    <section class="block" id="interns" data-group="interns">
+      <div class="team-block__head">
+        <span class="team-block__num">Students</span>
+        <h2>Interns &amp; undergraduate researchers</h2>
+        <p>Summer and academic-year interns working across the lab's teams.</p>
+      </div>
+      <div class="people-grid people-grid--compact">{interns.map((p) => <PersonCard person={p} compact />)}</div>
+    </section>
+
+    <!-- Alumni -->
+    <section class="block" id="alumni" data-group="alumni">
+      <details class="accordion" open={alumni.length === 0}>
+        <summary><span><span class="team-block__num" style="display:block;margin-bottom:4px">Former members</span><span class="display" style="font-size:2rem">Alumni ({alumni.length})</span></span><span class="plus"><Icon name="plus" size={18} /></span></summary>
+        <div class="table-wrap" style="margin-bottom:24px">
+          <table class="data">
+            <thead><tr><th>Name</th><th>Degree</th><th>Year</th><th>Thesis / dissertation</th><th>Current position</th></tr></thead>
+            <tbody>
+              {alumni.length ? alumni.map((p) => (
+                <tr><td><a href={url(`/people/${p.slug}/`)}>{p.name}</a></td><td>{p.role}</td><td>{p.graduated}</td><td>{p.thesis_title}</td><td>{p.current_position}</td></tr>
+              )) : <tr><td colspan="5"><span class="todo">TODO</span> No alumni yet. Set <code>status: alumni</code> in a person's file to list them here.</td></tr>}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <Cta />
+</Base>
+
+<style>
+  .filter-wrap { position: sticky; top: 76px; z-index: 40; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--grey-200); padding: 14px 0; }
+  .filter-wrap:has([hidden]) { display: none; }
+  .people-page { padding-bottom: var(--section); }
+  .block { padding-top: 72px; }
+  .pi { display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; padding: clamp(28px, 4vw, 56px);
+    border-radius: var(--radius-lg); background: var(--grey-50); border: 1px solid var(--grey-200); }
+  .pi h2 { margin: 0 0 6px; font-size: clamp(2rem, 3vw, 2.75rem); }
+  .pi__photo { text-decoration: none; }
+  .pi__role { color: var(--maroon); font-weight: 600; margin-bottom: 20px; }
+  .pi__bio { color: var(--ink-2); max-width: 64ch; }
+  .pi__bio :global(p) { margin: 0; }
+  @media (max-width: 860px) { .pi { grid-template-columns: 1fr; } .pi :global(.avatar--xl) { --size: 180px; } }
+  .team-block__head { display: grid; grid-template-columns: 1fr 1.3fr; gap: 8px 48px; align-items: end; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid var(--grey-200); }
+  .team-block__head h2 { margin: 0; font-size: clamp(1.875rem, 3vw, 2.5rem); grid-column: 1; }
+  .team-block__head p { margin: 0; color: var(--ink-2); font-size: .9375rem; grid-column: 2; grid-row: 1 / 3; align-self: end; }
+  .team-block__num { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--maroon); }
+  @media (max-width: 760px) { .team-block__head { grid-template-columns: 1fr; } .team-block__head p { grid-column: 1; grid-row: auto; } }
+</style>
+
+<script>
+  const bar = document.getElementById('people-filter');
+  if (bar) {
+    bar.hidden = false;
+    const apply = (key: string) => {
+      const btn = (bar.querySelector(`[data-filter="${key}"]`) || bar.querySelector('[data-filter="all"]')) as HTMLElement;
+      key = btn.dataset.filter!;
+      bar.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      document.querySelectorAll<HTMLElement>('[data-group]').forEach((s) => (s.hidden = !(key === 'all' || s.dataset.group === key)));
+      if (key === 'alumni') (document.querySelector('#alumni details') as HTMLDetailsElement).open = true;
+    };
+    bar.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button'); if (!b) return;
+      const key = b.dataset.filter!;
+      history.replaceState(null, '', key === 'all' ? location.pathname : '#' + key);
+      apply(key);
+    });
+    apply(location.hash.slice(1) || 'all');
+  }
+</script>

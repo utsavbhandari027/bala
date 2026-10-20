@@ -1,0 +1,39 @@
+# TODO (owner): replace every entry below with real equipment, spaces, and photos.
+- group: Laboratory
+  items:
+    - name: Weed Physiology Laboratory
+      image: /img/placeholder-lab.svg
+      description: TODO — bench space for herbicide absorption, translocation, and metabolism studies.
+      specs: [TODO spec, TODO spec]
+    - name: Growth Chambers
+      image: /img/placeholder-lab.svg
+      description: TODO — controlled-environment chambers for dose–response and stress experiments.
+      specs: [TODO number of chambers, TODO light/temperature range]
+- group: Greenhouse
+  items:
+    - name: Greenhouse Bays
+      image: /img/placeholder-lab.svg
+      description: TODO — greenhouse space for resistance screening and whole-plant assays.
+      specs: [TODO area]
+- group: Field research sites
+  items:
+    - name: MAFES Field Stations
+      image: /img/placeholder-field.svg
+      description: TODO — field sites used for efficacy and crop-safety trials.
+      specs: [TODO station names, TODO acres]
+- group: Application technology
+  items:
+    - name: Research Spray Chamber
+      image: /img/placeholder-lab.svg
+      description: TODO — track sprayer for precise, repeatable herbicide applications.
+      specs: [TODO make/model]
+    - name: Spray Drones (UAS)
+      image: /img/placeholder-field.svg
+      description: TODO — drones used to compare aerial and ground herbicide applications.
+      specs: [TODO make/model]
+- group: Digital
+  items:
+    - name: Sensors & Computing
+      image: /img/placeholder-field.svg
+      description: TODO — multispectral cameras and computing for image analysis.
+      specs: [TODO]

@@ -1,0 +1,36 @@
+---
+import BrandMark from './BrandMark.astro';
+import { url } from '../lib/data';
+const nav = [
+  { title: 'Home', href: '/' },
+  { title: 'Research', href: '/research/' },
+  { title: 'People', href: '/people/' },
+  { title: 'Publications', href: '/publications/' },
+  { title: 'News', href: '/news/' },
+  { title: 'Join', href: '/opportunities/' },
+  { title: 'Contact', href: '/contact/' },
+];
+const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const active = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href={url('/')} aria-label="Bala Lab home">
+      <BrandMark />
+      <span class="brand__name">Bala Lab<span>Mississippi State University</span></span>
+    </a>
+    <nav aria-label="Main">
+      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      </button>
+      <ul class="nav" id="nav">
+        {nav.map((n) => <li><a href={url(n.href)} aria-current={active(n.href) ? 'page' : undefined}>{n.title}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn')!, nav = document.getElementById('nav')!;
+  btn.addEventListener('click', () => btn.setAttribute('aria-expanded', String(nav.classList.toggle('is-open'))));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); } });
+</script>

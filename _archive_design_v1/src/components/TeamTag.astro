@@ -1,0 +1,8 @@
+---
+import { teamById } from '../lib/data';
+interface Props { team: string }
+const { team } = Astro.props;
+const t = teamById(team);
+const label = t ? t.short : team === 'intern' ? 'Intern' : team === 'pi' ? 'Principal Investigator' : '';
+---
+{label && <span class:list={['tag', !t && 'tag--grey']}>{label}</span>}

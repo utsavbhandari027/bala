@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import TeamTag from '../components/TeamTag.astro';
+import Icon from '../components/Icon.astro';
+import { openings } from '../lib/data';
+const faqs = [
+  ['Are assistantships funded?', 'Stipend, tuition waiver, and health insurance details.'],
+  ['When should I apply?', 'Typical timeline for Fall and Spring starts.'],
+  ['Do you accept international applicants?', 'English-language requirements and visa timeline.'],
+  ['Do I need a background in weed science?', 'Relevant backgrounds (agronomy, plant biology, engineering, data science).'],
+];
+---
+<Base title="Opportunities" description="Graduate assistantships, internships, and how to join the Bala Lab at Mississippi State University.">
+  <PageHero eyebrow="Join the lab" title="Grow your career in <em>weed science</em>"
+    lede="Graduate students and interns in the Bala Lab work on questions that matter to growers, with hands-on training in the laboratory, the greenhouse, and the field.">
+    <div class="btn-row" style="margin-top:36px"><a class="btn btn--white" href="#positions">View open positions <Icon name="arrow" /></a><a class="btn btn--ghost-light" href="mailto:lad425@msstate.edu">Email Dr. Avila</a></div>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="gains">
+        {[['flask', 'Research training', 'Experimental design, field-trial management, statistics, and laboratory methods.'],
+          ['users', 'Close mentoring', 'TODO — describe meeting cadence, supervision, and team structure.'],
+          ['award', 'Visibility', 'Present at Southern and national Weed Science Society meetings and publish as a lead author.']].map(([i, t, d]) => (
+          <div class="gain"><span class="gain__icon"><Icon name={i} /></span><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-grey" id="positions">
+    <div class="container">
+      <div class="section-head"><div><div class="eyebrow">Open positions</div><h2>Current <em>openings</em></h2></div><p>{openings.length} position{openings.length === 1 ? '' : 's'} open. Closed positions are hidden automatically.</p></div>
+      <div class="positions">
+        {openings.length ? openings.map((o) => (
+          <article class="position">
+            <div class="position__top"><span class="tag tag--solid">Open</span><span class="tag tag--grey">{o.level}</span><TeamTag team={o.team} /><span class="muted start">Start: {o.start}</span></div>
+            <h3>{o.title}</h3>
+            <p class="muted">{o.description}</p>
+            <div class="position__cols">
+              <div><h4>Requirements</h4><ul>{o.requirements.map((r: string) => <li>{r}</li>)}</ul></div>
+              <div><h4>How to apply</h4><p>{o.apply}</p></div>
+            </div>
+          </article>
+        )) : <p>There are no open positions right now. Prospective students are always welcome to get in touch.</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two">
+      <div>
+        <div class="eyebrow">Always welcome</div>
+        <h2>Prospective <em>graduate students</em></h2>
+        <div class="prose">
+          <p>Interested in an MS or PhD in weed science? Email <a href="mailto:lad425@msstate.edu">lad425@msstate.edu</a> with:</p>
+          <ol class="steps"><li>Your CV</li><li>Unofficial transcripts</li><li>A short description of your research interests</li><li>A one-paragraph statement on why you want to join the lab</li></ol>
+          <p>Admission is through the <a href="https://www.grad.msstate.edu">MSU Graduate School</a> and the <a href="https://www.pss.msstate.edu">Plant and Soil Sciences graduate program</a>.</p>
+        </div>
+        <div class="intern">
+          <div class="eyebrow">Internships</div>
+          <h3>Summer interns</h3>
+          <p class="muted"><span class="todo">TODO</span> Dates, typical tasks (field plots, spray applications, data collection, greenhouse assays), pay, and how to apply.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2>Common <em>questions</em></h2>
+        {faqs.map(([q, a]) => (
+          <details class="accordion"><summary>{q}<span class="plus"><Icon name="plus" size={18} /></span></summary><div class="accordion__body"><span class="todo">TODO</span> {a}</div></details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .gains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .gain { padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--grey-200); }
+  .gain__icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--maroon); color: var(--white); margin-bottom: 24px; }
+  .gain h3 { font: 500 1.5rem/1.2 var(--font-display); }
+  .gain p { color: var(--ink-2); margin: 0; font-size: .9375rem; }
+  .positions { display: grid; gap: 20px; }
+  .position { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-lg); padding: clamp(24px, 3.5vw, 40px); border-left: 4px solid var(--maroon); }
+  .position__top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+  .position__top .start { margin-left: auto; font-size: .875rem; }
+  .position h3 { font: 500 1.75rem/1.2 var(--font-display); margin-bottom: 10px; }
+  .position__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--grey-200); }
+  .position h4 { font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-500); margin: 0 0 10px; }
+  .position ul { margin: 0; padding-left: 1.1em; color: var(--ink-2); }
+  .position__cols p { margin: 0; color: var(--ink-2); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 112px); }
+  .two h2 { margin-bottom: 28px; }
+  .steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 10px; margin: 0 0 20px; }
+  .steps li { counter-increment: s; display: flex; gap: 14px; align-items: center; }
+  .steps li::before { content: counter(s); width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--maroon-50); color: var(--maroon); display: grid; place-items: center; font-size: .8125rem; font-weight: 700; }
+  .intern { margin-top: 48px; padding: 28px; background: var(--grey-50); border-radius: var(--radius-lg); border: 1px solid var(--grey-200); }
+  .intern h3 { font: 500 1.5rem/1.2 var(--font-display); }
+  .intern p { margin: 0; }
+  @media (max-width: 900px) { .gains, .two, .position__cols { grid-template-columns: 1fr; } }
+</style>

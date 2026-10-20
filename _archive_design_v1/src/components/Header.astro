@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+import { url } from '../lib/data';
+const nav = [
+  { title: 'Research', href: '/research/' },
+  { title: 'People', href: '/people/' },
+  { title: 'Publications', href: '/publications/' },
+  { title: 'Facilities', href: '/facilities/' },
+  { title: 'News', href: '/news/' },
+  { title: 'Acknowledgments', href: '/acknowledgments/' },
+  { title: 'Contact', href: '/contact/' },
+];
+const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const active = (href: string) => path.startsWith(href);
+---
+<div class="utility">
+  <div class="container">
+    <a href="https://www.msstate.edu">Mississippi State University</a>
+    <div class="utility__right">
+      <a href="https://www.pss.msstate.edu">Plant &amp; Soil Sciences</a>
+      <a href="https://www.mafes.msstate.edu">MAFES</a>
+      <a href="https://extension.msstate.edu">Extension</a>
+    </div>
+  </div>
+</div>
+<header class="site-header on-dark" id="site-header">
+  <div class="container">
+    <a class="brand" href={url('/')} aria-label="Bala Lab home">
+      <span class="brand__mark" aria-hidden="true">B</span>
+      <span class="brand__text">
+        <span class="brand__name">Bala Lab</span>
+        <span class="brand__sub">Weed Science &amp; Precision Agriculture</span>
+      </span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul class="nav__list" id="nav-list">
+        {nav.map((n) => (
+          <li><a class="nav__link" href={url(n.href)} aria-current={active(n.href) ? 'page' : undefined}>{n.title}</a></li>
+        ))}
+        <li class="nav__item--join"><a class="btn btn--white" href={url('/opportunities/')}>Join the lab <Icon name="arrow" /></a></li>
+      </ul>
+      <button class="icon-btn" type="button" id="search-toggle" aria-label="Search the site" aria-expanded="false" aria-controls="search-panel"><Icon name="search" /></button>
+      <a class="btn btn--white btn--join" href={url('/opportunities/')} aria-current={active('/opportunities/') ? 'page' : undefined}>Join the lab</a>
+      <button class="icon-btn menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list"><Icon name="menu" /></button>
+    </nav>
+  </div>
+  <div class="search-panel" id="search-panel" hidden>
+    <div class="container">
+      <label class="visually-hidden" for="site-search">Search people, projects, and publications</label>
+      <input type="search" id="site-search" placeholder="Search people, projects, publications…" autocomplete="off" data-index={url('/search.json')} />
+      <ul class="search-results" id="search-results" aria-live="polite"></ul>
+    </div>
+  </div>
+</header>

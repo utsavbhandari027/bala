@@ -1,0 +1,14 @@
+{
+  "name": "bala-lab",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.3.5",
+    "js-yaml": "^5.4.2"
+  }
+}

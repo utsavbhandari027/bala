@@ -1,0 +1,27 @@
+---
+import TeamTag from './TeamTag.astro';
+import Icon from './Icon.astro';
+import { boldAuthors, pubLink, citation } from '../lib/data';
+interface Props { pub: any; compact?: boolean }
+const { pub, compact = false } = Astro.props;
+const link = pubLink(pub);
+const members = (pub.lab_authors ?? []).some((s: string) => s !== 'luis-avila');
+---
+<li class:list={['pub', compact && 'pub--compact']} data-year={pub.year} data-type={pub.type} data-teams={(pub.teams ?? []).join(' ')} data-featured={String(!!pub.featured)} data-members={String(members)}>
+  {!compact && <div class="pub__year">{pub.year}</div>}
+  <div>
+    <p class="pub__title">{link ? <a href={link} style="color:inherit;text-decoration:none">{pub.title}</a> : pub.title}</p>
+    <p class="pub__authors" set:html={boldAuthors(pub)} />
+    <p class="pub__venue"><em>{pub.venue}</em>{pub.volume && ` ${pub.volume}`}{pub.pages && `:${pub.pages}`}{compact && ` · ${pub.year}`}</p>
+    <div class="pub__actions">
+      {pub.doi ? <a class="btn btn--ghost btn--sm" href={link}>DOI <Icon name="arrow-up-right" size={14} /></a>
+        : link && <a class="btn btn--ghost btn--sm" href={link}>Article <Icon name="arrow-up-right" size={14} /></a>}
+      {pub.pdf && <a class="btn btn--ghost btn--sm" href={pub.pdf}>PDF</a>}
+      {pub.data && <a class="btn btn--ghost btn--sm" href={pub.data}>Data</a>}
+      {pub.code && <a class="btn btn--ghost btn--sm" href={pub.code}>Code</a>}
+      {!compact && <button class="btn btn--ghost btn--sm js-copy" type="button" data-cite={citation(pub)} hidden><Icon name="copy" size={14} /> Copy citation</button>}
+      {!compact && pub.featured && <span class="tag tag--solid">Featured</span>}
+      {!compact && (pub.teams ?? []).map((t: string) => <TeamTag team={t} />)}
+    </div>
+  </div>
+</li>

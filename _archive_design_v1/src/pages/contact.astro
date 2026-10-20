@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Contact" description="Contact the Bala Lab — address, email, phone, and directions to the Hill Agriculture Building.">
+  <PageHero eyebrow="Contact" title="Get in <em>touch</em>" lede="The Bala Lab is part of the Department of Plant and Soil Sciences at Mississippi State University." />
+  <section class="section" style="padding-top:56px">
+    <div class="container contact">
+      <div class="info">
+        <a class="item" href="mailto:lad425@msstate.edu"><span class="ic"><Icon name="mail" /></span><span><small>Email</small>lad425@msstate.edu</span></a>
+        <a class="item" href="tel:6623252598"><span class="ic"><Icon name="phone" /></span><span><small>Phone</small>(662) 325-2598</span></a>
+        <div class="item"><span class="ic"><Icon name="map-pin" /></span><span><small>Address</small>Department of Plant and Soil Sciences<br />Hill Agriculture Building, 32 Creelman Street<br />Mississippi State, MS 39762</span></div>
+        <div class="item"><span class="ic"><Icon name="building" /></span><span><small>Directions &amp; parking</small><span class="todo">TODO</span> Visitor parking and building entrance.</span></div>
+        <a class="btn" href="mailto:lad425@msstate.edu" style="margin-top:12px">Email the lab <Icon name="arrow" /></a>
+      </div>
+      <figure class="map">
+        <iframe title="Map of the Mississippi State University campus" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-88.8020%2C33.4500%2C-88.7800%2C33.4610&amp;layer=mapnik"></iframe>
+        <figcaption>Mississippi State University campus · <a href="https://www.google.com/maps/search/Hill+Agriculture+Building+Mississippi+State+University">Open in Google Maps</a> <span class="todo">TODO: center on Hill Agriculture Building</span></figcaption>
+      </figure>
+    </div>
+  </section>
+</Base>
+<style>
+  .contact { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .info { display: grid; gap: 12px; justify-items: start; }
+  .item { width: 100%; display: flex; gap: 18px; align-items: flex-start; padding: 20px; border: 1px solid var(--grey-200); border-radius: var(--radius); color: var(--ink); text-decoration: none; transition: border-color .2s, background .2s; }
+  a.item:hover { border-color: var(--maroon-200); background: var(--maroon-50); color: var(--ink); }
+  .ic { width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--maroon); color: var(--white); }
+  .ic :global(svg) { width: 20px; height: 20px; }
+  small { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 4px; }
+  .map { margin: 0; }
+  .map iframe { width: 100%; aspect-ratio: 4 / 3.2; border: 0; border-radius: var(--radius-lg); display: block; background: var(--grey-100); }
+  figcaption { font-size: .8125rem; color: var(--grey-500); margin-top: 12px; }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+</style>

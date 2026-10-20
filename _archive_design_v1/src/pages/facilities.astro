@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { facilities, url } from '../lib/data';
+---
+<Base title="Facilities" description="Laboratory, greenhouse, field research sites, and application technology used by the Bala Lab.">
+  <PageHero eyebrow="Facilities" title="Where the <em>work happens</em>"
+    lede="Laboratory, greenhouse, field, and application-technology resources that support the lab's research. <span class='todo'>TODO: owner to supply the real equipment list and photos</span>" />
+  <section class="section" style="padding-top:24px">
+    <div class="container">
+      {facilities.map((g, i) => (
+        <div class="group">
+          <div class="group__head"><span class="num">0{i + 1}</span><h2>{g.group}</h2></div>
+          <div class="grid grid-3">
+            {g.items.map((f: any) => (
+              <article class="card">
+                <div class="card__media"><img src={url(f.image)} alt="" loading="lazy" /></div>
+                <div class="card__body">
+                  <h3>{f.name}</h3>
+                  <p>{f.description}</p>
+                  {f.specs?.length > 0 && <ul class="specs">{f.specs.map((s: string) => <li>{s}</li>)}</ul>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .group { padding-top: 72px; }
+  .group__head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--grey-200); }
+  .group__head h2 { margin: 0; font-size: clamp(1.75rem, 2.6vw, 2.25rem); }
+  .num { font: 400 1.25rem/1 var(--font-display); color: var(--maroon); }
+  .specs { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .specs li { font-size: .75rem; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--grey-100); color: var(--grey-500); }
+</style>
