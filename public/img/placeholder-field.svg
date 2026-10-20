@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-  <!-- PLACEHOLDER — replace with a real field photo -->
-  <rect width="800" height="600" fill="#D3D6D8"/>
-  <rect y="230" width="800" height="370" fill="#8E9295"/>
-  <g stroke="#A3A7AA" stroke-width="8"><path d="M400 230 L-200 600"/><path d="M400 230 L50 600"/><path d="M400 230 L300 600"/><path d="M400 230 L500 600"/><path d="M400 230 L750 600"/><path d="M400 230 L1000 600"/></g>
-  <text x="400" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" letter-spacing="3" fill="#5E6164">FIELD PHOTO PLACEHOLDER</text>
-</svg>
