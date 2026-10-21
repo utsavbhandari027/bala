@@ -1,15 +1,16 @@
-name: Jon Corser
-slug: jon-corser
-role: PhD Student
-team: lab                 # pi | lab | field | digital | intern | alumni
-category: student            # pi | associate | student | intern
-order: 10
+---
+name: Victoria (last name TBC)
+slug: victoria-todo
+role: Intern
+team: intern                 # pi | lab | field | digital | intern | alumni
+category: intern            # pi | associate | student | intern
+order: 32
 is_lead: false
-status: draft            # current | alumni | draft
-photo: ""                # e.g. /img/people/jon-corser.webp — square, ≥600px. Empty = initials tile
+status: current          # current | alumni | draft
+photo: ""                # e.g. /img/people/victoria-todo.webp — square, ≥600px. Empty = initials tile
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
-program: "PhD, Weed Science — Plant and Soil Sciences"
+program: ""
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""
@@ -25,4 +26,5 @@ awards: []
 graduated: ""
 thesis_title: ""
 current_position: ""
+---
 <!-- Add a 100–200 word third-person bio covering the research question, crop/weed system, and methods. -->

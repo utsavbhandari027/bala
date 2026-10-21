@@ -1,3 +1,4 @@
+---
 name: Grey Davis
 slug: grey-davis
 role: MS Student
@@ -5,7 +6,7 @@ team: field                 # pi | lab | field | digital | intern | alumni
 category: student            # pi | associate | student | intern
 order: 22
 is_lead: false
-status: draft            # current | alumni | draft
+status: current          # current | alumni | draft
 photo: ""                # e.g. /img/people/grey-davis.webp — square, ≥600px. Empty = initials tile
 email: ""
 start_year: ""
@@ -25,4 +26,5 @@ awards: []
 graduated: ""
 thesis_title: ""
 current_position: ""
+---
 <!-- Add a 100–200 word third-person bio covering Grey Davis's research question, crop/weed system, and methods. -->

@@ -190,6 +190,8 @@ Current image locations:
 - Sponsor logos: [public/img/sponsors/](public/img/sponsors/)
 - Placeholder field/lab art: [public/img/placeholder-field.svg](public/img/placeholder-field.svg) and [public/img/placeholder-lab.svg](public/img/placeholder-lab.svg)
 
+Paths in frontmatter fields such as `photo:` get the `/bala` base path added automatically. Images placed inside a Markdown body (`![alt](...)`) do not, so write the full path there: `![Field day](/bala/img/news/field-day.jpg)`.
+
 The shared logo component is [src/components/BrandMark.astro](src/components/BrandMark.astro). It is used in both the header and footer. If you replace the logo filename, update that component.
 
 The homepage hero is controlled by [src/pages/index.astro](src/pages/index.astro). Its background image is currently referenced in the `.hero` CSS in that file.
@@ -316,7 +318,7 @@ This stylesheet also contains the responsive rules for desktop, tablet, and mobi
 - News is sorted by date.
 - Publications are sorted by year.
 - Openings with `status: closed` are filtered out.
-- `url()` adds the `/Bala_website` base path required by GitHub Pages.
+- `url()` adds the `/bala` base path required by GitHub Pages.
 
 Normally you should edit Markdown/YAML content rather than editing `src/lib/data.ts`.
 
@@ -353,7 +355,7 @@ npm run preview
 The live site is hosted at:
 
 ```text
-https://utsavbhandari027.github.io/Bala_website/
+https://utsavbhandari027.github.io/bala/
 ```
 
 After checking the site locally:
@@ -377,4 +379,4 @@ The GitHub Actions workflow in `.github/workflows/deploy.yml` rebuilds and publi
 7. Do not edit `dist/`, `.astro/`, or `node_modules/` directly.
 8. Replace text marked `TODO`, `Placeholder`, or `Sample` before publishing.
 9. Run `npm run build` before pushing.
-10. Keep the `/Bala_website` base path in internal links and image paths compatible with GitHub Pages.
+10. Keep the `/bala` base path in internal links and image paths compatible with GitHub Pages.

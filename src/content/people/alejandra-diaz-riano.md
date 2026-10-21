@@ -1,16 +1,17 @@
-name: Dr. Rubens Antonio Polito
-slug: rubens-polito
-role: Research Associate — Lab Team Lead
+---
+name: Alejandra Díaz-Riaño
+slug: alejandra-diaz-riano
+role: PhD Student
 team: lab                 # pi | lab | field | digital | intern | alumni
-category: associate            # pi | associate | student | intern
-order: 2
-is_lead: true
-status: draft            # current | alumni | draft
-photo: ""                # e.g. /img/people/rubens-polito.webp — square, ≥600px. Empty = initials tile
+category: student            # pi | associate | student | intern
+order: 11
+is_lead: false
+status: current          # current | alumni | draft
+photo: ""                # e.g. /img/people/alejandra-diaz-riano.webp — square, ≥600px. Empty = initials tile
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
-program: ""
-cite_names: ["Polito, R. A."]   # how this name appears in author lists (bolded automatically)
+program: "PhD, Weed Science — Plant and Soil Sciences"
+cite_names: ["Riaño, A. D."]   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""
   scholar: ""
@@ -25,4 +26,5 @@ awards: []
 graduated: ""
 thesis_title: ""
 current_position: ""
+---
 <!-- Add a 100–200 word third-person bio covering the research question, crop/weed system, and methods. -->

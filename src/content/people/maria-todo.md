@@ -1,14 +1,15 @@
-name: Victoria (last name TBC)
-slug: victoria-todo
+---
+name: Maria (last name TBC)
+slug: maria-todo
 role: Intern
 team: intern                 # pi | lab | field | digital | intern | alumni
 category: intern            # pi | associate | student | intern
-order: 32
+order: 31
 is_lead: false
-status: draft            # current | alumni | draft
-photo: ""                # e.g. /img/people/victoria-todo.webp — square, ≥600px. Empty = initials tile
-email: ""                # TODO@msstate.edu
-start_year: ""           # TODO
+status: current          # current | alumni | draft
+photo: ""                # e.g. /img/people/maria-todo.webp — square, ≥600px. Empty = initials tile
+email: ""
+start_year: ""
 program: ""
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
@@ -25,4 +26,5 @@ awards: []
 graduated: ""
 thesis_title: ""
 current_position: ""
-<!-- Add a 100–200 word third-person bio covering the research question, crop/weed system, and methods. -->
+---
+<!-- Add a 100–200 word third-person bio covering Maria's research question, crop/weed system, and methods. -->

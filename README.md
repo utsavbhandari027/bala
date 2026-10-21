@@ -16,7 +16,7 @@ To build the final static site: `npm run build` (output goes to `dist/`).
 
 ## Publishing
 
-The live site is https://utsavbhandari027.github.io/Bala_website/ — it rebuilds automatically
+The live site is https://utsavbhandari027.github.io/bala/ — it rebuilds automatically
 (≈1–2 min) on every push to `main` via `.github/workflows/deploy.yml`. To publish a change:
 
     git add -A
