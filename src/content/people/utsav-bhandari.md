@@ -17,6 +17,7 @@ location: "Starkville, MS, USA"
 position: "Graduate Research Assistant"
 cite_names: ["Bhandari, U."]   # how this name appears in author lists (bolded automatically)
 links:
+  website: https://utsavbhandari027.github.io/              # personal website
   orcid: ""
   scholar: https://scholar.google.com/citations?user=-heMtX8AAAAJ&hl=en
   researchgate: ""

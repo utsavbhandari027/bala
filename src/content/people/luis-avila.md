@@ -7,13 +7,14 @@ category: pi
 order: 1
 is_lead: true
 status: current
-photo: "" # Add an approved headshot at /img/people/luis-avila.webp when available.
+photo: /img/people/luis-avila.jpg
 email: lad425@msstate.edu
 phone: "662-325-2598"
 office: Hill Agriculture Building
 department: Agricultural Science and Plant Protection, Mississippi State University
 cite_names: ["Antonio De Avila, L.", "Antonio de Avila, L.", "De Avila, L. A.", "De Avila, L.", "Avila, L. A.", "Avila, L."]
 links:
+  website: ""              # personal website
   directory: https://www.pss.msstate.edu/people/lad425
   scholar: ""
   orcid: ""

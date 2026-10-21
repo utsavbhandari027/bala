@@ -2,19 +2,11 @@
 import Base from '../layouts/Base.astro';
 import FieldArt from '../components/FieldArt.astro';
 import Icon from '../components/Icon.astro';
-import Avatar from '../components/Avatar.astro';
 import PubItem from '../components/PubItem.astro';
-import { researchAreas, currentPeople, publications, url, shortName } from '../lib/data';
+import { researchAreas, currentPeople, publications, url } from '../lib/data';
 
 const pi = currentPeople.find((p) => p.category === 'pi');
-const team = currentPeople.filter((p) => p.category === 'associate' || p.category === 'student').slice(0, 4);
 const recent = [...publications].sort((a, b) => Number(!!b.featured) - Number(!!a.featured) || b.year - a.year).slice(0, 3);
-const focus = [
-  'Herbicide resistance mechanisms in Mid-South weeds',
-  'UAV imagery and machine learning for weed mapping',
-  'Drone versus ground herbicide application',
-  'Herbicide persistence and fate in soil and water',
-];
 ---
 <Base>
   <!-- Hero -->
@@ -33,7 +25,7 @@ const focus = [
   <!-- What we do -->
   <section class="section">
     <div class="wrap">
-      <div class="head head--center"><div class="eyebrow">What we do</div><h2>Five research areas</h2></div>
+      <div class="head head--center"><div class="eyebrow">What we do</div><h2>Research Areas</h2></div>
       <ul class="areas">
         {researchAreas.map((a) => (
           <li><a href={url(`/research/#${a.id}`)}>
@@ -46,48 +38,35 @@ const focus = [
     </div>
   </section>
 
-  <!-- Mission -->
+  <!-- Mission and PI message -->
   <section class="section bg-stone">
-    <div class="wrap mission">
+    <div class="wrap message">
+      <figure class="portrait">
+        <img src={url('/img/people/luis-avila-portrait.jpg')} alt={`Portrait of ${pi.name}`} width="960" height="1200" loading="lazy" />
+      </figure>
       <div>
         <div class="eyebrow">Our mission</div>
-        <h2>Solving real-world weed problems</h2>
-        <p>Weeds adapt quickly to the tools used against them. We follow a herbicide from the spray nozzle to its target site in the plant and into the soil, and use that understanding to design management that stays effective for growers in the Mid-South and beyond.</p>
-        <a class="link" href={url('/research/')}>View all research <Icon name="arrow" /></a>
-      </div>
-      <ul class="focus">
-        {focus.map((f, i) => <li><span>0{i + 1}</span>{f}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Team -->
-  <section class="section">
-    <div class="wrap">
-      <div class="head head--center"><div class="eyebrow">Our team</div><h2>The researchers</h2></div>
-      <a class="pi card" href={url(`/people/${pi.slug}/`)}>
-        <Avatar person={pi} size={120} />
-        <div>
-          <span class="pill">Principal investigator</span>
-          <h3>{pi.name}</h3>
-          <p>{pi.role}, Department of Agricultural Science and Plant Protection</p>
+        <h2>Our mission &amp; a message from our PI</h2>
+        <div class="letter">
+          <p>Weeds are among the most adaptable organisms in agriculture. Sooner or later, they learn to escape every tool we give growers. That is why our lab follows a herbicide all the way from the spray nozzle to its target site in the plant and into the soil, and why we pair that understanding with drones, remote sensing, and machine learning. Our mission is simple to state and hard to achieve: weed management that keeps working for growers in the Mid-South and beyond.</p>
+          <p>I believe good science starts in the field. The questions that matter most come from the people who farm, and our answers only count when they hold up on a real farm, not just in our data. Leaving an impact on agriculture means respecting the land, the grower's livelihood, and the generation that will inherit both.</p>
+          <p>As a mentor, my door is open. I give students real ownership of their projects and the support to see them through: honest feedback, room to make mistakes, and the freedom to chase a good idea. I want everyone who trains here to leave as an independent scientist, a clear communicator, and a generous colleague. Careers are long, and character and curiosity will carry you further than any single result.</p>
+          <p>If you are driven by curiosity and want your work to matter to the people who feed us, I would love to hear from you.</p>
         </div>
-      </a>
-      <div class="grid grid-4" style="margin-top:20px">
-        {team.map((p) => (
-          <a class="card person" href={url(`/people/${p.slug}/`)}>
-            <Avatar person={p} size={84} />
-            <h3>{shortName(p.name)}</h3>
-            <p>{p.role.split(' — ')[0]}</p>
-          </a>
-        ))}
+        <p class="signature">
+          <a href={url(`/people/${pi.slug}/`)}>{pi.name}</a>
+          <span>{pi.role}</span>
+        </p>
+        <div class="btn-row message__links">
+          <a class="btn btn--line" href={url('/people/')}>Meet the team <Icon name="arrow" /></a>
+          <a class="link" href={url('/research/')}>View all research <Icon name="arrow" /></a>
+        </div>
       </div>
-      <div class="center more"><a class="btn btn--line" href={url('/people/')}>See full team <Icon name="arrow" /></a></div>
     </div>
   </section>
 
   <!-- Publications -->
-  <section class="section bg-stone">
+  <section class="section">
     <div class="wrap narrow">
       <div class="head head--center"><div class="eyebrow">Publications</div><h2>Recent work</h2></div>
       <ul class="pub-list">{recent.map((p) => <PubItem pub={p} />)}</ul>
@@ -136,16 +115,24 @@ const focus = [
   }
   @media (max-width: 560px) { .areas { grid-template-columns: 1fr; } .areas li:nth-child(even) { border-left: 0; } .areas li:nth-child(2) { border-top: 1px solid var(--rule); } }
 
-  .mission { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 7vw, 112px); align-items: center; }
-  .mission p { color: var(--ink-2); margin: 20px 0 28px; max-width: 54ch; }
-  .focus { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-  .focus li { display: flex; gap: 18px; align-items: center; padding: 20px 24px; background: var(--white); border: 1px solid var(--rule); border-radius: 14px; font-weight: 500; font-size: .9375rem; }
-  .focus span { font: 800 .875rem/1 var(--font-display); color: var(--accent); }
-  @media (max-width: 860px) { .mission { grid-template-columns: 1fr; } }
-
-  .pi { flex-direction: row; align-items: center; gap: 32px; padding: 32px 36px; }
-  .pi h3 { font: 800 1.5rem/1.2 var(--font-display); font-stretch: 112%; margin: 14px 0 6px; }
-  @media (max-width: 600px) { .pi { flex-direction: column; text-align: center; } }
+  .message { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(48px, 7vw, 104px); align-items: start; }
+  .message h2 { margin-bottom: 28px; }
+  /* Photo in a white mat, with an offset maroon outline behind it. */
+  .portrait { position: sticky; top: 112px; margin: 0 22px 22px 0; }
+  .portrait::before { content: ''; position: absolute; inset: 22px -22px -22px 22px; border: 2px solid var(--maroon); border-radius: 22px; }
+  .portrait img { position: relative; display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border: 10px solid var(--white); border-radius: 22px;
+    box-shadow: 0 36px 70px -36px rgba(46,11,18,.55); }
+  .letter { color: var(--ink-2); font-size: 1.0625rem; max-width: 62ch; }
+  .letter p:first-child::first-letter { float: left; font: 900 3.4rem/.9 var(--font-display); color: var(--maroon); margin: 6px 10px 0 0; }
+  .signature { display: grid; gap: 2px; margin: 32px 0 0; padding-top: 24px; border-top: 1px solid var(--rule); max-width: 62ch; }
+  .signature a { font: 800 1.25rem/1.3 var(--font-display); font-stretch: 112%; color: var(--ink); }
+  .signature a:hover { color: var(--maroon); }
+  .signature span { font-size: .875rem; color: var(--muted); }
+  .message__links { margin-top: 32px; align-items: center; gap: 24px; }
+  @media (max-width: 900px) {
+    .message { grid-template-columns: 1fr; }
+    .portrait { position: relative; top: 0; max-width: 380px; }
+  }
 
   .cta { padding: clamp(88px, 11vw, 140px) 0; background: radial-gradient(120% 140% at 50% 0%, var(--deep-3), var(--deep) 65%); }
 </style>

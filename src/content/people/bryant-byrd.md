@@ -17,6 +17,7 @@ location: ""             # 📍 e.g. "Starkville, MS, USA"
 position: ""             # 🧰 e.g. "Graduate Research Assistant"
 cite_names: ["Byrd, B."]   # how this name appears in author lists (bolded automatically)
 links:
+  website: ""              # personal website
   orcid: ""
   scholar: ""
   researchgate: ""

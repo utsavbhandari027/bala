@@ -52,6 +52,7 @@ Edit or add files in [src/content/people/](src/content/people/).
 - `hometown`, `location`, and `position` appear as small chips under that paragraph.
 - `timeline` lists education and positions, newest first, and is shown beside the paragraph.
 - `first_author_articles` lists journal articles where the person is first author, shown under "Selected first-author articles".
+- Entries under `links:` (website, LinkedIn, GitHub, Google Scholar, ORCID, ResearchGate, CV) appear as round icons under the person's name; empty ones are hidden.
 - See [src/content/people/utsav-bhandari.md](src/content/people/utsav-bhandari.md) for a fully filled-in example.
 
 Important fields include:

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Avatar from '../../components/Avatar.astro';
+import Icon from '../../components/Icon.astro';
 import PubItem from '../../components/PubItem.astro';
 import { currentPeople, alumni, projects, publications, teamById, url, shortName } from '../../lib/data';
 
@@ -23,13 +24,20 @@ const chips = [['🏠', p.hometown], ['📍', p.location], ['🧰', p.position]]
 const hasAbout = p.hasBody || interests.length > 0 || chips.length > 0;
 const L = p.links ?? {};
 const links = [
-  ['ORCID', L.orcid], ['Google Scholar', L.scholar], ['ResearchGate', L.researchgate], ['LinkedIn', L.linkedin],
-  ['GitHub', L.github], ['MSU directory', L.directory], ['CV', L.cv],
+  ['Personal website', L.website, 'globe'], ['LinkedIn', L.linkedin, 'linkedin'], ['GitHub', L.github, 'github'],
+  ['Google Scholar', L.scholar, 'scholar'], ['ORCID', L.orcid, 'orcid'], ['ResearchGate', L.researchgate, 'researchgate'],
+  ['MSU directory', L.directory, 'building'], ['CV', L.cv, 'file-text'],
 ].filter(([, v]) => v);
 const name = shortName(p.name);
 ---
 <Base title={name.replace(/^Dr\.\s*/, '')} description={`${p.name} — ${p.role}, Bala Lab, Mississippi State University.`}>
-  <PageHero eyebrow={team ? team.name : p.category === 'pi' ? 'Principal investigator' : 'Bala Lab'} title={name} lede={p.program || p.role} back={{ label: 'People', href: url('/people/') }} />
+  <PageHero eyebrow={team ? team.name : p.category === 'pi' ? 'Principal investigator' : 'Bala Lab'} title={name} lede={p.program || p.role} back={{ label: 'People', href: url('/people/') }}>
+    {links.length > 0 && (
+      <ul class="socials rise-3">
+        {links.map(([label, href, icon]) => <li><a href={href} aria-label={label} title={label}><Icon name={icon} size={18} /></a></li>)}
+      </ul>
+    )}
+  </PageHero>
 
   <section class="section">
     <div class="wrap">
@@ -39,7 +47,6 @@ const name = shortName(p.name);
           {p.email && <li><a href={`mailto:${p.email}`}>{p.email}</a></li>}
           {p.phone && <li>{p.phone}</li>}
           {p.office && <li class="muted">{p.office}</li>}
-          {links.map(([label, href]) => <li><a href={href}>{label} ↗</a></li>)}
         </ul>
       </div>
 
@@ -103,6 +110,10 @@ const name = shortName(p.name);
 </Base>
 
 <style>
+  .socials { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .socials a { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); color: var(--white);
+    transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+  .socials a:hover { background: var(--white); border-color: var(--white); color: var(--maroon); }
   .who { display: flex; align-items: center; gap: 28px; padding-bottom: 40px; margin-bottom: clamp(48px, 6vw, 72px); border-bottom: 1px solid var(--rule); }
   .contact { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: .9375rem; word-break: break-word; }
   .about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 96px); align-items: start; }
