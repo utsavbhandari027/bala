@@ -1,0 +1,39 @@
+# Replace these summaries, images, and specifications with confirmed facility details.
+- group: Laboratory
+  items:
+    - name: Weed Physiology Laboratory
+      image: /img/placeholder-lab.svg
+      description: Bench space for herbicide absorption, translocation, and metabolism studies.
+      specs: []
+    - name: Growth Chambers
+      image: /img/placeholder-lab.svg
+      description: Controlled-environment chambers for dose–response and stress experiments.
+      specs: []
+- group: Greenhouse
+  items:
+    - name: Greenhouse Bays
+      image: /img/placeholder-lab.svg
+      description: Greenhouse space for resistance screening and whole-plant assays.
+      specs: []
+- group: Field research sites
+  items:
+    - name: MAFES Field Stations
+      image: /img/placeholder-field.svg
+      description: Field sites used for efficacy and crop-safety trials.
+      specs: []
+- group: Application technology
+  items:
+    - name: Research Spray Chamber
+      image: /img/placeholder-lab.svg
+      description: Track sprayer for precise, repeatable herbicide applications.
+      specs: []
+    - name: Spray Drones (UAS)
+      image: /img/placeholder-field.svg
+      description: Drones used to compare aerial and ground herbicide applications.
+      specs: []
+- group: Digital
+  items:
+    - name: Sensors & Computing
+      image: /img/placeholder-field.svg
+      description: Multispectral cameras and computing for image analysis.
+      specs: []

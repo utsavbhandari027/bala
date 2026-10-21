@@ -1,0 +1,48 @@
+---
+// Aerial "crop rows" artwork for dark bands: contour rows + drone flight paths + a map pin.
+interface Props { pin?: boolean; class?: string }
+const { pin = false, class: cls = '' } = Astro.props;
+const rows = Array.from({ length: 34 }, (_, i) => {
+  const y = -120 + i * 30;
+  const a = 26 + i * 1.4;
+  return `M-40 ${y} C 260 ${y + a}, 520 ${y - a * 1.6}, 800 ${y + a * .4} S 1180 ${y + a * 1.8}, 1280 ${y + a}`;
+});
+---
+<svg class:list={['field-art', cls]} viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <radialGradient id="fa-glow" cx="70%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#A33A4F" stop-opacity=".28" />
+      <stop offset="1" stop-color="#A33A4F" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="fa-fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0" />
+      <stop offset=".45" stop-color="#fff" stop-opacity="1" />
+    </linearGradient>
+    <mask id="fa-mask"><rect width="1200" height="900" fill="url(#fa-fade)" /></mask>
+  </defs>
+  <rect width="1200" height="900" fill="url(#fa-glow)" />
+  <g mask="url(#fa-mask)" fill="none" stroke-linecap="round">
+    <g stroke="#C1C6C8" stroke-width="1.1" opacity=".22">{rows.map((d) => <path d={d} />)}</g>
+    <g stroke="#FFFFFF" stroke-width="4" opacity=".22" class="fa-paths">
+      <path d="M520 980 L 1010 -60" />
+      <path d="M1250 260 L 960 640" />
+      <path d="M1080 -40 L 960 640" />
+    </g>
+  </g>
+  {pin && (
+    <g class="fa-pin" transform="translate(960 640)">
+      <circle r="22" fill="#FFB81C" opacity=".18" class="fa-pulse" />
+      <circle r="6" fill="#FFB81C" />
+      <text x="16" y="-14" fill="#FFB81C" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="3">BALA LAB</text>
+    </g>
+  )}
+</svg>
+<style>
+  .field-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .fa-paths path { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 2.4s .3s cubic-bezier(.2,.7,.2,1) forwards; }
+  .fa-paths path:nth-child(2) { animation-delay: .6s; }
+  .fa-paths path:nth-child(3) { animation-delay: .9s; }
+  .fa-pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.6s ease-out infinite; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pulse { 0% { transform: scale(.4); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
+</style>

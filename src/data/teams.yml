@@ -1,0 +1,24 @@
+- id: lab
+  name: Lab-Based Research
+  short: Lab
+  color: "#007FA3"
+  lead: rubens-polito
+  summary: >-
+    Herbicide physiology, mode of action, resistance mechanisms, and molecular tools such as
+    RNAi for weed control.
+- id: field
+  name: Field-Based Research
+  short: Field
+  color: "#8F993E"
+  lead: reece-butler
+  summary: >-
+    Field efficacy trials, integrated and resilient weed management, crop safety, and application
+    technology under Mid-South production conditions.
+- id: digital
+  name: Digital Agriculture
+  short: Digital
+  color: "#C99700"
+  lead: null
+  summary: >-
+    UAV/satellite remote sensing, machine learning, and precision weed mapping to target
+    management decisions.

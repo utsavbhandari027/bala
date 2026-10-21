@@ -1,0 +1,53 @@
+- id: herbicide-physiology
+  title: Herbicide Physiology
+  icon: sprout
+  image: /img/placeholder-lab.svg
+  blurb: How herbicides are absorbed, translocated, and metabolized — and how weeds evolve resistance.
+  description: >-
+    The lab studies how herbicides enter plants, move to their target sites, and are broken down,
+    and how weed populations such as *Echinochloa colona* and *Sagittaria montevidensis* evolve
+    target-site and metabolic resistance. Work combines whole-plant dose–response assays with
+    biochemical and gene-expression analyses.
+  questions:
+    - Which metabolic pathways confer multiple resistance in barnyardgrass and junglerice?
+    - How does environmental stress change herbicide uptake and efficacy?
+- id: precision-weed-management
+  title: Precision Weed Management
+  icon: map-pin
+  image: /img/placeholder-field.svg
+  blurb: Remote sensing and machine learning to map weeds and target control where it is needed.
+  description: >-
+    Using UAV and satellite imagery with machine-learning models, the lab maps weed infestations
+    and evaluates site-specific management that applies herbicide only where weeds are present.
+  questions:
+    - How accurately can weeds be detected at early growth stages from UAV imagery?
+- id: application-technology
+  title: Application Technology
+  icon: drone
+  image: /img/placeholder-field.svg
+  blurb: Spray drift, deposition, and drone versus ground application efficiency.
+  description: >-
+    The lab compares herbicide applications made with spray drones and ground sprayers, measuring
+    deposition, drift, and weed control to develop practical recommendations for growers.
+  questions:
+    - Is herbicide applied by drone as effective as a terrestrial application?
+- id: environmental-fate
+  title: Environmental Fate
+  icon: droplets
+  image: /img/placeholder-lab.svg
+  blurb: Persistence, leaching, and dissipation of herbicides in soil and water.
+  description: >-
+    Research on how soil moisture, drainage, and management affect the persistence and carryover
+    of herbicides such as S-metolachlor and imidazolinones in rice and soybean systems.
+  questions:
+    - How does soil moisture govern S-metolachlor persistence?
+- id: alternative-weed-control
+  title: Alternative Weed Control
+  icon: leaf
+  image: /img/placeholder-lab.svg
+  blurb: RNAi, novel delivery systems, and non-chemical tactics for resilient weed management.
+  description: >-
+    The lab develops RNA interference (RNAi) approaches for weed control, including chitosan
+    nanoparticle carriers for dsRNA delivery, alongside cultural and non-chemical tactics.
+  questions:
+    - Can nanoparticle carriers deliver functional dsRNA into weed tissues?

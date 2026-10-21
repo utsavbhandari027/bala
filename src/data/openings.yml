@@ -1,0 +1,19 @@
+# status: open | closed  (closed positions are hidden automatically)
+- title: PhD Assistantship — Digital Weed Management
+  level: PhD
+  team: digital
+  status: closed
+  start: "Fall 2027"
+  description: >-
+    Research on UAV-based weed detection and site-specific herbicide application in Mid-South row crops.
+  requirements:
+    - MS in agronomy, weed science, agricultural engineering, or a related field
+  apply: "Email CV, transcripts, and a one-page research statement to lad425@msstate.edu"
+- title: MS Assistantship — Field Weed Management
+  level: MS
+  team: field
+  status: closed
+  start: "Spring 2027"
+  description: Field efficacy and crop-safety trials.
+  requirements: []
+  apply: "Email CV, transcripts, and a one-page research statement to lad425@msstate.edu"

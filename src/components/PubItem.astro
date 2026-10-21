@@ -1,0 +1,10 @@
+---
+import { boldAuthors, pubLink } from '../lib/data';
+interface Props { pub: any; year?: boolean }
+const { pub, year = true } = Astro.props;
+const link = pubLink(pub);
+---
+<li class="pub" data-year={pub.year}>
+  <p class="pub__title">{link ? <a href={link}>{pub.title}</a> : pub.title}</p>
+  <p class="pub__meta"><span set:html={boldAuthors(pub)} /> · <em>{pub.venue}</em>{pub.volume && ` ${pub.volume}`}{year && ` · ${pub.year}`}</p>
+</li>

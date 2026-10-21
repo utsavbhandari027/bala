@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Avatar from '../../components/Avatar.astro';
+import PubItem from '../../components/PubItem.astro';
+import { currentPeople, alumni, projects, publications, teamById, url, shortName } from '../../lib/data';
+
+export function getStaticPaths() {
+  return [...currentPeople, ...alumni].map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: any };
+const { Content } = p;
+const team = teamById(p.team);
+const myProjects = projects.filter((x) => (x.people ?? []).includes(p.slug));
+const myPubs = publications.filter((x) => (x.lab_authors ?? []).includes(p.slug));
+const L = p.links ?? {};
+const links = [
+  ['ORCID', L.orcid], ['Google Scholar', L.scholar], ['ResearchGate', L.researchgate], ['LinkedIn', L.linkedin],
+  ['GitHub', L.github], ['MSU directory', L.directory], ['CV', L.cv],
+].filter(([, v]) => v);
+const name = shortName(p.name);
+---
+<Base title={name.replace(/^Dr\.\s*/, '')} description={`${p.name} — ${p.role}, Bala Lab, Mississippi State University.`}>
+  <PageHero eyebrow={team ? team.name : p.category === 'pi' ? 'Principal investigator' : 'Bala Lab'} title={name} lede={p.program || p.role} back={{ label: 'People', href: url('/people/') }} />
+
+  <section class="section">
+    <div class="wrap profile">
+      <aside>
+        <Avatar person={p} size={180} />
+        <ul class="contact">
+          {p.email && <li><a href={`mailto:${p.email}`}>{p.email}</a></li>}
+          {p.phone && <li>{p.phone}</li>}
+          {p.office && <li class="muted">{p.office}</li>}
+          {links.map(([label, href]) => <li><a href={href}>{label} ↗</a></li>)}
+        </ul>
+      </aside>
+      <div>
+        <div class="eyebrow">About</div>
+        <div class="prose"><Content /></div>
+        {p.research_interests?.length > 0 && (
+          <div class="block"><div class="eyebrow">Research focus</div>
+            <div class="tags">{p.research_interests.map((r: string) => <span class="pill">{r}</span>)}</div></div>
+        )}
+        {myProjects.length > 0 && (
+          <div class="block"><div class="eyebrow">Projects</div>
+            <ul class="rows">{myProjects.map((x) => <li style="grid-template-columns:1fr"><a class="title" href={url(`/research/projects/${x.slug}/`)}>{x.title}</a></li>)}</ul></div>
+        )}
+        {myPubs.length > 0 && (
+          <div class="block"><div class="eyebrow">Publications</div>
+            <ul class="pub-list">{myPubs.slice(0, 6).map((x) => <PubItem pub={x} />)}</ul>
+            {myPubs.length > 6 && <a class="link" style="margin-top:20px" href={url('/publications/')}>All publications →</a>}</div>
+        )}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .profile { display: grid; grid-template-columns: 240px 1fr; gap: clamp(40px, 6vw, 88px); align-items: start; }
+  .contact { list-style: none; margin: 28px 0 0; padding: 20px 0 0; border-top: 1px solid var(--rule); display: grid; gap: 8px; font-size: .9375rem; word-break: break-word; }
+  .block { margin-top: 56px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags .pill { letter-spacing: .04em; text-transform: none; font-size: .8125rem; font-weight: 600; }
+  @media (max-width: 760px) { .profile { grid-template-columns: 1fr; } }
+</style>

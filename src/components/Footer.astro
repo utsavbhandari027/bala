@@ -1,0 +1,37 @@
+---
+import BrandMark from './BrandMark.astro';
+import { url } from '../lib/data';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href={url('/')}><BrandMark /></a>
+        <p>Weed science, herbicide physiology, and precision agriculture research at Mississippi State University.</p>
+        <span class="coords">33°27′19″N 88°47′40″W — Mississippi State, MS</span>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <address>
+          Dept. of Plant and Soil Sciences<br />Hill Agriculture Building<br />Mississippi State, MS 39762<br />
+          <a href="mailto:lad425@msstate.edu">lad425@msstate.edu</a>
+        </address>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>
+          <li><a href={url('/research/')}>Research</a></li>
+          <li><a href={url('/people/')}>People</a></li>
+          <li><a href={url('/publications/')}>Publications</a></li>
+          <li><a href={url('/facilities/')}>Facilities</a></li>
+          <li><a href={url('/acknowledgments/')}>Acknowledgments</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} Bala Lab · Mississippi State University</span>
+      <span>Department of Plant and Soil Sciences · MAFES</span>
+    </div>
+  </div>
+</footer>
