@@ -12,11 +12,12 @@ const byLead = (a: any, b: any) => Number(!!b.is_lead) - Number(!!a.is_lead) || 
 const groups = [
   ...teams.map((t) => ({ id: t.id, eyebrow: 'Team', title: t.name, intro: clean(t.summary), members: currentPeople.filter((p) => p.team === t.id).sort(byLead) })),
   { id: 'interns', eyebrow: 'Students', title: 'Interns', intro: '', members: currentPeople.filter((p) => p.category === 'intern') },
+  { id: 'undergrad-interns', eyebrow: 'Students', title: 'Undergraduate Interns', intro: '', compact: true, members: currentPeople.filter((p) => p.category === 'undergrad-intern') },
   { id: 'alumni', eyebrow: 'Former members', title: 'Alumni', intro: '', members: alumni },
 ].filter((g) => g.members.length);
 ---
 <Base title="People" description="Faculty, research associates, graduate students, interns, and alumni of the Bala Lab at Mississippi State University.">
-  <PageHero eyebrow="People" title="The people behind the research" lede="Research associates, graduate students, and interns working across three teams." />
+  <PageHero eyebrow="People" title="The people behind the research" lede="Research associates, graduate students, and interns working across four teams." />
 
   <section class="section">
     <div class="wrap">
@@ -40,16 +41,24 @@ const groups = [
     <section class:list={['section', i % 2 === 0 && 'bg-stone']} id={g.id}>
       <div class="wrap">
         <div class="head"><div class="eyebrow">{g.eyebrow}</div><h2>{g.title}</h2>{g.intro && <p>{g.intro}</p>}</div>
-        <div class="grid grid-4">
-          {g.members.map((p) => (
-            <a class="card person" href={url(`/people/${p.slug}/`)}>
-              <Avatar person={p} size={88} />
-              <h3>{shortName(p.name)}</h3>
-              <p>{role(p)}</p>
-              {p.is_lead && p.team !== 'pi' && <span class="pill">Team lead</span>}
-            </a>
-          ))}
-        </div>
+        {g.compact ? (
+          <ul class="compact">
+            {g.members.map((p) => (
+              <li><Avatar person={p} size={56} /><span>{shortName(p.name)}</span></li>
+            ))}
+          </ul>
+        ) : (
+          <div class="grid grid-4">
+            {g.members.map((p) => (
+              <a class="card person" href={url(`/people/${p.slug}/`)}>
+                <Avatar person={p} size={88} />
+                <h3>{shortName(p.name)}</h3>
+                <p>{role(p)}</p>
+                {p.is_lead && p.team !== 'pi' && <span class="pill">Team lead</span>}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   ))}
@@ -60,5 +69,7 @@ const groups = [
   .pi h2 { margin: 16px 0 6px; }
   .pi__role { color: var(--accent-600); font-weight: 600; margin-bottom: 20px; }
   .pi .btn-row { align-items: center; gap: 24px; }
+  .compact { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 28px 36px; }
+  .compact li { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 112px; text-align: center; font-weight: 600; font-size: .9375rem; }
   @media (max-width: 760px) { .pi { grid-template-columns: 1fr; } }
 </style>

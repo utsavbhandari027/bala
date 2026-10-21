@@ -10,7 +10,7 @@ status: current          # current | alumni | draft
 photo: ""                # e.g. /img/people/anslee-boyd.webp — square, ≥600px. Empty = initials tile
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
-program: "MS, Weed Science — Plant and Soil Sciences"
+program: "MS, Weed Science — Agricultural Science and Plant Protection"
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""

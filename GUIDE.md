@@ -44,6 +44,7 @@ Edit or add files in [src/content/people/](src/content/people/).
 - Copy [src/content/people/_template.md](src/content/people/_template.md) for a new person.
 - The filename becomes the default URL slug. For example, `jon-corser.md` becomes `/people/jon-corser/`.
 - Set `status: alumni` to move a person out of the current team lists and into Alumni.
+- Set `category: undergrad-intern` to list a person under Undergraduate Interns, which shows only their name and a small round photo.
 - Keep incomplete profiles in `src/content/people/_drafts/`; files in that folder stay out of public listings and detail pages until they are complete.
 - Set `order` to control ordering within lists.
 - Set `photo` to an image path such as `/img/people/jon-corser.webp`.

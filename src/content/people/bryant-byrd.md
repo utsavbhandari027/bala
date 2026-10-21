@@ -1,13 +1,13 @@
 ---
 name: Bryant Byrd
-slug: bryyant-byrd
-role: Research Associate — Digital Agriculture Team Lead
-team: digital                 # pi | lab | field | digital | intern | alumni
+slug: bryant-byrd
+role: Research Associate — Application Technology Team Lead
+team: application             # pi | lab | field | digital | application | intern | alumni
 category: associate            # pi | associate | student | intern
 order: 2
 is_lead: true
 status: current          # current | alumni | draft
-photo: ""                # e.g. /img/people/rubens-polito.webp — square, ≥600px. Empty = initials tile
+photo: ""                # e.g. /img/people/bryant-byrd.jpg — square, ≥600px. Empty = initials tile
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
 program: ""

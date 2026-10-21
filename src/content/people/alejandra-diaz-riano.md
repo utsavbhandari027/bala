@@ -10,7 +10,7 @@ status: current          # current | alumni | draft
 photo: ""                # e.g. /img/people/alejandra-diaz-riano.webp — square, ≥600px. Empty = initials tile
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
-program: "PhD, Weed Science — Plant and Soil Sciences"
+program: "PhD, Weed Science — Agricultural Science and Plant Protection"
 cite_names: ["Riaño, A. D."]   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""

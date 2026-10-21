@@ -1,6 +1,6 @@
 # Bala Lab website
 
-Astro site for the Bala Lab, Department of Plant and Soil Sciences, Mississippi State University.
+Astro site for the Bala Lab, Department of Agricultural Science and Plant Protection, Mississippi State University.
 (The earlier Jekyll draft is kept in `_archive_jekyll_v1/` for reference and can be deleted.
 The previous, busier Astro design is kept in `_archive_design_v1/src/`; copy it back over `src/` to restore it.)
 

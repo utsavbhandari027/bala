@@ -11,7 +11,7 @@ photo: "" # Add an approved headshot at /img/people/luis-avila.webp when availab
 email: lad425@msstate.edu
 phone: "662-325-2598"
 office: Hill Agriculture Building
-department: Plant and Soil Sciences, Mississippi State University
+department: Agricultural Science and Plant Protection, Mississippi State University
 cite_names: ["Antonio De Avila, L.", "Antonio de Avila, L.", "De Avila, L. A.", "De Avila, L.", "Avila, L. A.", "Avila, L."]
 links:
   directory: https://www.pss.msstate.edu/people/lad425
@@ -40,6 +40,6 @@ memberships:
 education: []
 awards: []
 ---
-Dr. Luis Avila is Professor and Chair of the Dr. Glover B. Triplett Endowment in the Department of Plant and Soil Sciences at Mississippi State University. His program connects herbicide physiology, environmental fate, application technology, and digital agriculture to develop resilient weed management for Mid-South cropping systems.
+Dr. Luis Avila is Professor and Chair of the Dr. Glover B. Triplett Endowment in the Department of Agricultural Science and Plant Protection at Mississippi State University. His program connects herbicide physiology, environmental fate, application technology, and digital agriculture to develop resilient weed management for Mid-South cropping systems.
 
 <!-- Expand this to a 150–250 word bio with education, career path, and research program details. -->

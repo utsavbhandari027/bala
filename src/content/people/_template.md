@@ -2,15 +2,15 @@
 name: Firstname Lastname
 slug: firstname-lastname
 role: PhD Student
-team: lab                 # pi | lab | field | digital | intern | alumni
-category: student            # pi | associate | student | intern
+team: lab                 # pi | lab | field | digital | application | intern | alumni
+category: student            # pi | associate | student | intern | undergrad-intern
 order: 10
 is_lead: false
 status: current          # current | alumni
 photo: ""                # e.g. /img/people/jon-corser.webp — square, ≥600px. Empty = initials tile
 email: ""
 start_year: ""
-program: "PhD, Weed Science — Plant and Soil Sciences"
+program: "PhD, Weed Science — Agricultural Science and Plant Protection"
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""

@@ -10,7 +10,7 @@ status: current          # current | alumni | draft
 photo: ""                # e.g. /img/people/grey-davis.webp — square, ≥600px. Empty = initials tile
 email: ""
 start_year: ""
-program: "MS, Weed Science — Plant and Soil Sciences"
+program: "MS, Weed Science — Agricultural Science and Plant Protection"
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""

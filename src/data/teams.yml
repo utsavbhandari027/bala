@@ -22,3 +22,11 @@
   summary: >-
     UAV/satellite remote sensing, machine learning, and precision weed mapping to target
     management decisions.
+- id: application
+  name: Application Technology
+  short: Application
+  color: "#5D2A2C"
+  lead: bryant-byrd
+  summary: >-
+    Spray drift, deposition, and drone versus ground herbicide application efficiency, turned
+    into practical recommendations for growers.
