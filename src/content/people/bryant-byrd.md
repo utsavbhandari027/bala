@@ -1,8 +1,8 @@
 ---
-name: Dr. Rubens Antonio Polito
-slug: rubens-polito
-role: Research Associate — Lab Team Lead
-team: lab                 # pi | lab | field | digital | intern | alumni
+name: Bryant Byrd
+slug: bryyant-byrd
+role: Research Associate — Digital Agriculture Team Lead
+team: digital                 # pi | lab | field | digital | intern | alumni
 category: associate            # pi | associate | student | intern
 order: 2
 is_lead: true
@@ -11,7 +11,7 @@ photo: ""                # e.g. /img/people/rubens-polito.webp — square, ≥60
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
 program: ""
-cite_names: ["Polito, R. A."]   # how this name appears in author lists (bolded automatically)
+cite_names: ["Byrd, B."]   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""
   scholar: ""

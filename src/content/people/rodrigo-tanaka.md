@@ -1,8 +1,8 @@
 ---
 name: Rodrigo Tanaka
 slug: rodrigo-tanaka
-role: Intern
-team: intern                 # pi | lab | field | digital | intern | alumni
+role: field
+team: field                 # pi | lab | field | digital | intern | alumni
 category: intern            # pi | associate | student | intern
 order: 30
 is_lead: false

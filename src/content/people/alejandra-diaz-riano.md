@@ -3,7 +3,7 @@ name: Alejandra Díaz-Riaño
 slug: alejandra-diaz-riano
 role: PhD Student
 team: lab                 # pi | lab | field | digital | intern | alumni
-category: student            # pi | associate | student | intern
+category: intern            # pi | associate | student | intern
 order: 11
 is_lead: false
 status: current          # current | alumni | draft

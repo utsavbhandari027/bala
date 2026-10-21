@@ -1,8 +1,8 @@
 ---
-name: Maria (last name TBC)
+name: Maria Jimenez
 slug: maria-todo
-role: Intern
-team: intern                 # pi | lab | field | digital | intern | alumni
+role: field
+team: field                 # pi | lab | field | digital | intern | alumni
 category: intern            # pi | associate | student | intern
 order: 31
 is_lead: false

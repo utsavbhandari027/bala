@@ -1,8 +1,8 @@
 ---
-name: Victoria (last name TBC)
-slug: victoria-todo
-role: Intern
-team: intern                 # pi | lab | field | digital | intern | alumni
+name: Vitoria Alves
+slug: Vitoria
+role: lab
+team: lab                 # pi | lab | field | digital | intern | alumni
 category: intern            # pi | associate | student | intern
 order: 32
 is_lead: false
