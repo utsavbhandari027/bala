@@ -48,7 +48,11 @@ Edit or add files in [src/content/people/](src/content/people/).
 - Keep incomplete profiles in `src/content/people/_drafts/`; files in that folder stay out of public listings and detail pages until they are complete.
 - Set `order` to control ordering within lists.
 - Set `photo` to an image path such as `/img/people/jon-corser.webp`.
-- The Markdown body is the person's biography.
+- The Markdown body is a one-paragraph summary of the person's research, shown under "Research Interests" on their profile.
+- `hometown`, `location`, and `position` appear as small chips under that paragraph.
+- `timeline` lists education and positions, newest first, and is shown beside the paragraph.
+- `first_author_articles` lists journal articles where the person is first author, shown under "Selected first-author articles".
+- See [src/content/people/utsav-bhandari.md](src/content/people/utsav-bhandari.md) for a fully filled-in example.
 
 Important fields include:
 

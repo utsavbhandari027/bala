@@ -2,8 +2,8 @@
 name: Jon Corser
 slug: jon-corser
 role: PhD Student
-team: lab                 # pi | lab | field | digital | intern | alumni
-category: student            # pi | associate | student | intern
+team: lab                 # pi | lab | field | digital | application | intern | alumni
+category: student            # pi | associate | student | intern | undergrad-intern
 order: 10
 is_lead: false
 status: current          # current | alumni | draft
@@ -11,6 +11,10 @@ photo: ""                # e.g. /img/people/jon-corser.webp — square, ≥600px
 email: ""                # TODO@msstate.edu
 start_year: ""           # TODO
 program: "PhD, Weed Science — Agricultural Science and Plant Protection"
+# Chips under the research paragraph; leave any of them empty to hide it.
+hometown: ""             # 🏠 e.g. "Butwal, Nepal"
+location: ""             # 📍 e.g. "Starkville, MS, USA"
+position: ""             # 🧰 e.g. "Graduate Research Assistant"
 cite_names: []   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""
@@ -19,12 +23,24 @@ links:
   linkedin: ""
   github: ""
   cv: ""
-research_interests: []   # 3–5 short phrases
-education: []            # - { degree: "MS, Agronomy", institution: "…", year: 2024 }
+# Education and positions, newest first. Shown as the timeline beside the research paragraph.
+timeline: []
+#  - years: "2024 – 2026"
+#    title: "M.S., Agronomy"
+#    place: "Utah State University, Logan, UT"
+#    details: "Weed detection, UAVs, Remote sensing."
+# Journal articles where this person is the first author.
+first_author_articles: []
+#  - year: 2025
+#    authors: "Lastname, F., Avila, L."
+#    title: "Article title"
+#    venue: "Weed Science"
+#    volume: "73"
+#    doi: "10.xxxx/xxxxx"
 awards: []
 # alumni only:
 graduated: ""
 thesis_title: ""
 current_position: ""
 ---
-<!-- Add a 100–200 word third-person bio covering the research question, crop/weed system, and methods. -->
+<!-- Research interests: one paragraph (100–150 words) on the research questions, crop/weed systems, and methods. Shown under "Research Interests". -->

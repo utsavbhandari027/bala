@@ -2,8 +2,8 @@
 name: Utsav Bhandari
 slug: utsav-bhandari
 role: PhD Student
-team: digital                 # pi | lab | field | digital | intern | alumni
-category: student            # pi | associate | student | intern
+team: digital                 # pi | lab | field | digital | application | intern | alumni
+category: student            # pi | associate | student | intern | undergrad-intern
 order: 10
 is_lead: false
 status: current          # current | alumni | draft
@@ -11,6 +11,10 @@ photo: /img/people/utsav-bhandari.jpg
 email: utsavbhandari027@gmail.com
 start_year: 2026
 program: "PhD, Weed Science — Agricultural Science and Plant Protection"
+# Chips under the research paragraph; leave any of them empty to hide it.
+hometown: "Butwal, Nepal"
+location: "Starkville, MS, USA"
+position: "Graduate Research Assistant"
 cite_names: ["Bhandari, U."]   # how this name appears in author lists (bolded automatically)
 links:
   orcid: ""
@@ -19,15 +23,38 @@ links:
   linkedin: https://www.linkedin.com/in/vastu27/
   github: https://github.com/utsavbhandari027
   cv: https://utsavbhandari027.github.io/assets/cv/CV_UtsavBhandari.pdf
-research_interests:
-  - Precision agriculture
-  - Computer vision for weed detection
-  - Semi-supervised and transfer learning
-  - UAV and satellite remote sensing
-  - Edge-device deployment
-education:
-  - { degree: "MS, Agricultural Extension Education", institution: "Utah State University", year: 2026 }
-  - { degree: "BS, Agriculture", institution: "Tribhuvan University (IAAS), Nepal", year: 2022 }
+# Education and positions, newest first. Shown as the timeline beside the research paragraph.
+timeline:
+  - years: "2026 – present"
+    title: "Ph.D., Weed Science"
+    place: "Mississippi State University"
+    details: "Machine learning, Computer vision, Remote sensing, UAVs, Weed science."
+  - years: "2024 – 2026"
+    title: "M.S., Agricultural Extension Education"
+    place: "Utah State University, Logan, UT"
+    details: "Computer vision, Deep learning, Edge-device deployment, UAVs, Weed detection."
+  - years: "2023 – 2024"
+    title: "Agriculture Supply Chain Officer"
+    place: "Mandala Agrifresh, Kathmandu, Nepal"
+    details: "Post-harvest technologies, Research, Supervision, Training."
+  - years: "2018 – 2022"
+    title: "B.S., Agriculture"
+    place: "Tribhuvan University (IAAS), Lamjung, Nepal"
+    details: "Agronomy, Statistics."
+# Journal articles where this person is the first author.
+first_author_articles:
+  - year: 2026
+    authors: "Bhandari, U., Etienne, A."
+    title: "Precision weed detection using UAVs and deep learning: Models, paradigms, and challenges"
+    venue: "Smart Agricultural Technology"
+    volume: "13"
+    doi: "10.1016/j.atech.2025.101656"
+  - year: 2023
+    authors: "Bhandari, U., Gajurel, A., Khadka, B., Thapa, I., Chand, I., Bhatta, D., Poudel, A., Pandey, M., Shrestha, S., Shrestha, J."
+    title: "Morpho-physiological and biochemical response of rice (Oryza sativa L.) to drought stress: A review"
+    venue: "Heliyon"
+    volume: "9"
+    doi: "10.1016/j.heliyon.2023.e13744"
 awards:
   - "1st Place, Student Research Poster Competition — ISASH Conference (2025)"
   - "Ambassador Ardeshir Zahedi International Endowment Scholarship — Utah State University (2025–2026)"
@@ -37,6 +64,4 @@ graduated: ""
 thesis_title: ""
 current_position: ""
 ---
-Utsav Bhandari is a PhD student in Weed Science in the Department of Agricultural Science and Plant Protection at Mississippi State University and a member of the lab's Digital Agriculture team. Utsav's research sits at the intersection of precision agriculture, computer vision, and autonomous systems, with a focus on problems that show up in real agricultural fields rather than only in benchmarks. The work centers on label-efficient deep learning, using semi-supervised and transfer-learning approaches to cope with the scarcity of annotated agricultural data, applied to high-resolution UAV and satellite imagery and optimized for real-time inference on edge devices.
-
-Before joining Mississippi State, Utsav completed an MS in Agricultural Extension Education at Utah State University, with a thesis on multi-species weed detection in Utah forage corn using supervised and semi-supervised learning. That work also produced USU-Corn-WeedDB, a public UAV image dataset for weed detection. Utsav holds a BS in Agriculture from Tribhuvan University (IAAS), Nepal, and previously worked as an agriculture supply chain officer at Mandala Agrifresh in Kathmandu. Other interests include abiotic stress detection in plants, post-harvest technologies to reduce food waste, and agricultural extension. Utsav is an FAA Part 107 certified remote pilot.
+Utsav's research lies at the intersection of precision agriculture, computer vision, and autonomous systems. The work focuses on label-efficient deep learning architectures, particularly semi-supervised and transfer-learning approaches, that address the scarcity of annotated agricultural datasets. Utsav uses high-resolution UAV and satellite imagery to build robust deep learning models optimized for real-time inference on edge devices. Beyond this, Utsav works on abiotic stress detection in plants, post-harvest technologies to reduce food waste, and agricultural extension that helps farmers and stakeholders develop better farming systems.

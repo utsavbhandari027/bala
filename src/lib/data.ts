@@ -12,12 +12,16 @@ export const openings = loadYaml('openings').filter((o) => o.status === 'open');
 export const sponsors = loadYaml('sponsors');
 export const publications = loadYaml('publications').sort((a, b) => b.year - a.year);
 
-type MdModule = { frontmatter: Record<string, any>; Content: any; file: string };
+type MdModule = { frontmatter: Record<string, any>; Content: any; file: string; rawContent: () => string };
 const slugOf = (file: string) => file.split('/').pop()!.replace(/\.md$/, '');
+// hasBody is false when the Markdown body is empty or only an <!-- instructions --> comment.
 const collect = (mods: Record<string, MdModule>) =>
   Object.values(mods)
     .filter((m) => !slugOf(m.file).startsWith('_'))
-    .map((m) => ({ ...m.frontmatter, slug: m.frontmatter.slug || slugOf(m.file), Content: m.Content }));
+    .map((m) => ({
+      ...m.frontmatter, slug: m.frontmatter.slug || slugOf(m.file), Content: m.Content,
+      hasBody: m.rawContent().replace(/<!--[\s\S]*?-->/g, '').trim() !== '',
+    }));
 
 const allPeople = collect(import.meta.glob('../content/people/*.md', { eager: true }))
   .sort((a: any, b: any) => a.order - b.order) as any[];

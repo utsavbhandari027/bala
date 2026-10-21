@@ -146,7 +146,7 @@ img { max-width: 100%; height: auto; display: block; }
 .page-head .wrap { position: relative; z-index: 1; }
 .page-head h1 { max-width: 18ch; margin: 0; }
 .page-head .lede { max-width: 58ch; margin: 22px 0 0; font-size: 1.125rem; color: var(--accent-200); }
-.page-head .back { display: inline-block; margin-bottom: 24px; font-size: .8125rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-300); }
+.page-head .back { display: block; width: fit-content; margin-bottom: 24px; font-size: .8125rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-300); }
 .page-head .back:hover { color: var(--white); }
 .page-head__rows { position: absolute; right: -80px; top: 0; height: 100%; width: 55%; opacity: .5; pointer-events: none; }
 
