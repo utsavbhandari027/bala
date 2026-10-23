@@ -8,7 +8,7 @@ order: 10
 is_lead: false
 status: current          # current | alumni | draft
 photo: /img/people/utsav-bhandari.jpg
-email: utsavbhandari027@gmail.com
+email: ub63@msstate.edu
 start_year: 2026
 program: "PhD, Weed Science — Agricultural Science and Plant Protection"
 # Chips under the research paragraph; leave any of them empty to hide it.
@@ -17,7 +17,6 @@ location: "Starkville, MS, USA"
 position: "Graduate Research Assistant"
 cite_names: ["Bhandari, U."]   # how this name appears in author lists (bolded automatically)
 links:
-  website: https://utsavbhandari027.github.io/              # personal website
   orcid: ""
   scholar: https://scholar.google.com/citations?user=-heMtX8AAAAJ&hl=en
   researchgate: ""
